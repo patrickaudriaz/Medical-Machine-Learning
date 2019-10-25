@@ -1,0 +1,1 @@
+mkdir output;cp -r input/* output/;for file in output/*/*.pdf; do convert -density 150 "$file" -quality 100 "$file.jpg"; done;for file in output/*/*.pdf;do rm "$file"; done;

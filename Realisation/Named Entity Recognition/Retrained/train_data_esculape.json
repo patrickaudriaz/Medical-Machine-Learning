@@ -1,0 +1,206 @@
+{
+  "content": "nop1ta1 fribourgeois",
+  "annotation": [
+    {
+      "label": [
+        "ORG"
+      ],
+      "points": [
+        {
+          "start": 0,
+          "end": 19,
+          "text": "nop1ta1 fribourgeois"
+        }
+      ]
+    }
+  ]
+}
+{
+  "content": "freiburger spital",
+  "annotation": [
+    {
+      "label": [
+        "ORG"
+      ],
+      "points": [
+        {
+          "start": 0,
+          "end": 16,
+          "text": "freiburger spital"
+        }
+      ]
+    }
+  ]
+}
+{
+  "content": "HFR Riaz",
+  "annotation": [
+    {
+      "label": [
+        "ORG"
+      ],
+      "points": [
+        {
+          "start": 0,
+          "end": 7,
+          "text": "HFR Riaz"
+        }
+      ]
+    }
+  ]
+}
+{
+  "content": "1632 Riaz",
+  "annotation": [
+    {
+      "label": [
+        "ORG"
+      ],
+      "points": [
+        {
+          "start": 0,
+          "end": 8,
+          "text": "1632 Riaz"
+        }
+      ]
+    }
+  ]
+}
+{
+  "content": "Docteur",
+  "annotation": [
+    {
+      "label": [
+        "PERS"
+      ],
+      "points": [
+        {
+          "start": 0,
+          "end": 6,
+          "text": "Docteur"
+        }
+      ]
+    }
+  ]
+}
+{
+  "content": "Test MEDECIN",
+  "annotation": [
+    {
+      "label": [
+        "PERS"
+      ],
+      "points": [
+        {
+          "start": 0,
+          "end": 11,
+          "text": "Test MEDECIN"
+        }
+      ]
+    }
+  ]
+}
+{
+  "content": "Monsieur et cher Confrere,",
+  "annotation": [
+    {
+      "label": [
+        "PERS"
+      ],
+      "points": [
+        {
+          "start": 0,
+          "end": 7,
+          "text": "Monsieur"
+        }
+      ]
+    }
+  ]
+}
+{
+  "content": "Votre patient, Monsieur Patient MONDEMO, ne le 22.01.1956, a sejourne dans notre service",
+  "annotation": [
+    {
+      "label": [
+        "DATE"
+      ],
+      "points": [
+        {
+          "start": 47,
+          "end": 56,
+          "text": "22.01.1956"
+        }
+      ]
+    },
+    {
+      "label": [
+        "PERS"
+      ],
+      "points": [
+        {
+          "start": 24,
+          "end": 38,
+          "text": "Patient MONDEMO"
+        }
+      ]
+    }
+  ]
+}
+{
+  "content": "de chirurgie du 09.05.2010 au 13.05.2010, date de son retour a domicile.",
+  "annotation": [
+    {
+      "label": [
+        "DATE"
+      ],
+      "points": [
+        {
+          "start": 30,
+          "end": 39,
+          "text": "13.05.2010"
+        }
+      ]
+    },
+    {
+      "label": [
+        "DATE"
+      ],
+      "points": [
+        {
+          "start": 16,
+          "end": 25,
+          "text": "09.05.2010"
+        }
+      ]
+    }
+  ]
+}
+{
+  "content": "Le 10.05.2010, Dr UROLOGUE: ureterotomie interne et resection transuretrale de la loge",
+  "annotation": [
+    {
+      "label": [
+        "PERS"
+      ],
+      "points": [
+        {
+          "start": 15,
+          "end": 25,
+          "text": "Dr UROLOGUE"
+        }
+      ]
+    },
+    {
+      "label": [
+        "DATE"
+      ],
+      "points": [
+        {
+          "start": 3,
+          "end": 12,
+          "text": "10.05.2010"
+        }
+      ]
+    }
+  ]
+}

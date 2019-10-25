@@ -1,0 +1,62 @@
+[
+  {
+    "N° Enr.":[1],
+    "IDMedecin":[1],
+    "MedTitre":["Dr. "],
+    "MedNom":["AUDRIAZ"],
+    "MedPrenom":["Patrick"],
+    "MedEAN":[7601000222111],
+    "MedRCC":["A123456"],
+    "MedAdresse":["rte. d'Englisberg 13"],
+    "MedNPA":[1763],
+    "MedLieu":["Granges-Paccot"],
+    "MedTel":["026 550 05 80"],
+    "MedFax":["026 550 05 81"],
+    "MedCabinet":["Cabinet du Dr. Audriaz Patrick"]
+  },
+  {
+    "N° Enr.":[2],
+    "IDMedecin":[2],
+    "MedTitre":["Dr. "],
+    "MedNom":["MEDECIN"],
+    "MedPrenom":["Test"],
+    "MedEAN":[7601000222112],
+    "MedRCC":["A123457"],
+    "MedAdresse":["rte. d'Englisberg 14"],
+    "MedNPA":[1763],
+    "MedLieu":["Granges-Paccot"],
+    "MedTel":["026 550 05 80"],
+    "MedFax":["026 550 05 81"],
+    "MedCabinet":["Cabinet du Dr. Test Medecin"]
+  },
+  {
+    "N° Enr.":[3],
+    "IDMedecin":[3],
+    "MedTitre":["Dr. "],
+    "MedNom":["GOLANT"],
+    "MedPrenom":["Henry"],
+    "MedEAN":[7601000222113],
+    "MedRCC":["A123458"],
+    "MedAdresse":["rte. d'Englisberg 15"],
+    "MedNPA":[1763],
+    "MedLieu":["Granges-Paccot"],
+    "MedTel":["026 550 05 80"],
+    "MedFax":["026 550 05 81"],
+    "MedCabinet":["Cabinet du Dr. Henry Golant"]
+  },
+  {
+    "N° Enr.":[4],
+    "IDMedecin":[4],
+    "MedTitre":["Dr. "],
+    "MedNom":["TERIEUR"],
+    "MedPrenom":["Alain"],
+    "MedEAN":[7601000222114],
+    "MedRCC":["A123459"],
+    "MedAdresse":["rte. d'Englisberg 16"],
+    "MedNPA":[1763],
+    "MedLieu":["Granges-Paccot"],
+    "MedTel":["026 550 05 80"],
+    "MedFax":["026 550 05 81"],
+    "MedCabinet":["Cabinet du Dr. Alain Térieur"]
+  }
+]

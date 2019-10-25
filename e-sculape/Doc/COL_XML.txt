@@ -1,0 +1,163 @@
+// Résumé : Transformation d'un pdf vers un CDA avec encapsulation du PDF. 
+Ludovic Frehner
+// Syntaxe :
+//xmlgenerator (<sEffectiftime>, <sIDDemande>, <sTitreDocument>, <sPatNom>, <sPatPrenom>, <sPatDDN>, <sPatAdrRte>, <sPatAdrNPA>, <sPatAdrVille>, <sPatTel>, <cPatSex>, <sAutPrefix>, <sAutNom>, <sAutPrenom>, <sAutAdrRte>, <sAutAdrNpa>, <sAutAdrVille>, <sAutTel>, <sInfEAN>, <sOrgNom>, <sPDFB64>)
+//
+// Paramètres :
+//	sEffectiftime : <indiquez ici le rôle de patnom>
+//	sIDDemande : <indiquez ici le rôle de sIDDemande>
+//	sTitreDocument : <indiquez ici le rôle de parprenom>
+//	sPatNom : <indiquez ici le rôle de sPatNom>
+//	sPatPrenom : <indiquez ici le rôle de sPatPrenom>
+//	sPatDDN : <indiquez ici le rôle de sPatDDN>
+//	sPatAdrRte : <indiquez ici le rôle de sPatAdrRte>
+//	sPatAdrNPA : <indiquez ici le rôle de sPatAdrNPA>
+//	sPatAdrVille : <indiquez ici le rôle de sPatAdrVille>
+//	sPatTel : <indiquez ici le rôle de sPatTel>
+//	cPatSex : <indiquez ici le rôle de cPatSex>
+//	sAutPrefix : <indiquez ici le rôle de sAutPrefix>
+//	sAutNom : <indiquez ici le rôle de sAutNom>
+//	sAutPrenom : <indiquez ici le rôle de sAutPrenom>
+//	sAutAdrRte : <indiquez ici le rôle de sAutAdrRte>
+//	sAutAdrNpa : <indiquez ici le rôle de sAutAdrNpa>
+//	sAutAdrVille : <indiquez ici le rôle de sAutAdrVille>
+//	sAutTel : <indiquez ici le rôle de sAutTel>
+//	sInfEAN : <indiquez ici le rôle de sOrgNom>
+//	sOrgNom : <indiquez ici le rôle de sOrgNom>
+//	sPDFB64 : <indiquez ici le rôle de sPDFB64>
+// Valeur de retour :
+// 	Aucune
+//
+// Exemple :
+// Indiquez ici un exemple d'utilisation.
+//
+// 	sidETQ : <indiquez ici le rôle de sidETQ>
+PROCÉDURE xmlgenerator(sEffectiftime,sIDDemande, sTitreDocument, 
+sPatNom, sPatPrenom, sPatDDN, sPatAdrRte, sPatAdrNPA, sPatAdrVille, sPatTel, cPatSex, 
+sAutPrefix, sAutNom, sAutPrenom, sAutAdrRte,sAutAdrNpa,sAutAdrVille, sAutTel, sInfEAN, sOrgNom, sPDFB64)
+REQ_UPDATE_STATUS.ParamIDEtiquette = sIDDemande
+REQ_UPDATE_STATUS.ParamIDstatus=3
+HExécuteRequête(REQ_UPDATE_STATUS,hVérifieDoublon+hVérifieIntégrité)
+
+sNomdocument est une chaîne = sIDDemande + "_"+sPatNom+"_"+sPatPrenom
+sSIDDemandeFinal est une chaîne = "1.125.11.555.98.0." + sIDDemande
+sTitreDocument = SansAccent(sTitreDocument)
+sPatNom = SansAccent(sPatNom)
+sPatPrenom = SansAccent(sPatPrenom)
+sPatDDN = SansAccent(sPatDDN)
+sPatAdrRte = SansAccent(sPatAdrRte)
+sPatAdrVille = SansAccent(sPatAdrVille)
+sPatTel = SansAccent(sPatTel)
+cPatSex = SansAccent(cPatSex)
+sAutPrefix = SansAccent(sAutPrefix)
+sAutNom = SansAccent(sAutNom)
+sAutPrenom = SansAccent(sAutPrenom)
+sAutAdrRte = SansAccent(sAutAdrRte)
+sAutAdrVille = SansAccent(sAutAdrVille)
+sAutTel = SansAccent(sAutTel)
+sOrgNom = SansAccent(sOrgNom)
+
+
+SourceXML est une chaîne
+Res est un booléen 
+// Chargement du contenu XML
+SourceXML = fChargeTexte(gsCDA)
+// Création du document XML
+Res = XMLDocument("CDA", SourceXML)
+// Le document est créé ?
+SI Res = Faux ALORS
+	Erreur("Le problème suivant a été détecté : " + ErreurInfo())
+FIN
+
+//Other informations
+//StandardIntustryClassCode of the represented organisation
+sICCCode est une chaîne = "ETABLISSEMENT"
+sICCCSN est une chaîne = "A01 - Cadres d'exercice"
+sICCDisplayName est une chaîne = "Etablissement de sante"
+//HealthCareFacility
+sHCFCode est une chaîne = "SA03"
+sHCFCSN est une chaîne="R02 - Secteurs d'activite RPPS"
+sHCFDisplayName est une chaîne = "Etablissement Prive PSPH"
+
+
+
+
+
+//General information
+XMLEcrit("CDA","/ClinicalDocument/effectiveTime/@value",sEffectiftime)
+XMLEcrit("CDA","/ClinicalDocument/author/time/@value",sEffectiftime)
+XMLEcrit("CDA","/ClinicalDocument/legalAuthenticator/time/@value",sEffectiftime)
+XMLEcrit("CDA","/ClinicalDocument/id/@root",sSIDDemandeFinal)
+
+//Document information
+XMLEcrit("CDA","/ClinicalDocument/title",sTitreDocument)
+//Patient information
+XMLEcrit("CDA","/ClinicalDocument/recordTarget/patientRole/addr/streetName",sPatAdrRte)
+XMLEcrit("CDA","/ClinicalDocument/recordTarget/patientRole/addr/city",sPatAdrVille)
+XMLEcrit("CDA","/ClinicalDocument/recordTarget/patientRole/addr/postalCode",sPatAdrNPA)
+XMLEcrit("CDA","/ClinicalDocument/recordTarget/patientRole/telecom/@value",sPatTel)
+XMLEcrit("CDA","/ClinicalDocument/recordTarget/patientRole/patient/name/given",sPatPrenom)
+XMLEcrit("CDA","/ClinicalDocument/recordTarget/patientRole/patient/name/family",sPatNom)
+XMLEcrit("CDA","/ClinicalDocument/recordTarget/patientRole/patient/administrativeGenderCode/@code",cPatSex)
+XMLEcrit("CDA","/ClinicalDocument/recordTarget/patientRole/patient/birthTime/@value",sPatDDN)
+//Author information
+XMLEcrit("CDA","/ClinicalDocument/author/assignedAuthor/addr/streetName",sAutAdrRte)
+XMLEcrit("CDA","/ClinicalDocument/author/assignedAuthor/addr/city",sAutAdrVille)
+XMLEcrit("CDA","/ClinicalDocument/author/assignedAuthor/addr/postalCode",sAutAdrNpa)
+XMLEcrit("CDA","/ClinicalDocument/author/assignedAuthor/telecom/@value",sAutTel)
+XMLEcrit("CDA","/ClinicalDocument/author/assignedAuthor/assignedPerson/name/prefix",sAutPrefix)
+XMLEcrit("CDA","/ClinicalDocument/author/assignedAuthor/assignedPerson/name/given",sAutPrenom)
+XMLEcrit("CDA","/ClinicalDocument/author/assignedAuthor/assignedPerson/name/family",sAutNom)
+//Organisation information
+XMLEcrit("CDA","/ClinicalDocument/author/assignedAuthor/representedOrganization/name",sOrgNom)
+XMLEcrit("CDA","/ClinicalDocument/author/assignedAuthor/representedOrganization/telecom/@value",sAutTel)
+XMLEcrit("CDA","/ClinicalDocument/author/assignedAuthor/representedOrganization/addr/streetName",sAutAdrRte)
+XMLEcrit("CDA","/ClinicalDocument/author/assignedAuthor/representedOrganization/addr/city",sAutAdrVille)
+XMLEcrit("CDA","/ClinicalDocument/author/assignedAuthor/representedOrganization/addr/postalCode",sAutAdrNpa)
+//Custodian information (GARDIEN?!)
+XMLEcrit("CDA","/ClinicalDocument/custodian/assignedCustodian/representedCustodianOrganization/name",sOrgNom)
+XMLEcrit("CDA","/ClinicalDocument/custodian/assignedCustodian/representedCustodianOrganization/telecom/@value",sAutTel)
+XMLEcrit("CDA","/ClinicalDocument/custodian/assignedCustodian/representedCustodianOrganization/addr/streetName",sAutAdrRte)
+XMLEcrit("CDA","/ClinicalDocument/custodian/assignedCustodian/representedCustodianOrganization/addr/city",sAutAdrVille)
+XMLEcrit("CDA","/ClinicalDocument/custodian/assignedCustodian/representedCustodianOrganization/addr/postalCode",sAutAdrNpa)
+//InformationRecipient (Copies?)
+XMLEcrit("CDA","/ClinicalDocument/informationRecipient/intendedRecipient/id/@extension",sInfEAN)
+XMLEcrit("CDA","/ClinicalDocument/informationRecipient/intendedRecipient/addr/streetName",sAutAdrRte)
+XMLEcrit("CDA","/ClinicalDocument/informationRecipient/intendedRecipient/addr/city",sAutAdrVille)
+XMLEcrit("CDA","/ClinicalDocument/informationRecipient/intendedRecipient/addr/postalCode",sAutAdrNpa)
+XMLEcrit("CDA","/ClinicalDocument/informationRecipient/intendedRecipient/telecom/@value",sAutTel)
+XMLEcrit("CDA","/ClinicalDocument/informationRecipient/intendedRecipient/informationRecipient/name/prefix",sAutPrefix)
+XMLEcrit("CDA","/ClinicalDocument/informationRecipient/intendedRecipient/informationRecipient/name/given",sAutPrenom)
+XMLEcrit("CDA","/ClinicalDocument/informationRecipient/intendedRecipient/informationRecipient/name/family",sAutNom)
+//Legal Authenticator (?!)
+XMLEcrit("CDA","/ClinicalDocument/legalAuthenticator/assignedEntity/addr/streetName",sAutAdrRte)
+XMLEcrit("CDA","/ClinicalDocument/legalAuthenticator/assignedEntity/addr/city",sAutAdrVille)
+XMLEcrit("CDA","/ClinicalDocument/legalAuthenticator/assignedEntity/addr/postalCode",sAutAdrNpa)
+XMLEcrit("CDA","/ClinicalDocument/legalAuthenticator/assignedEntity/telecom/@value",sAutTel)
+XMLEcrit("CDA","/ClinicalDocument/legalAuthenticator/assignedEntity/assignedPerson/name/prefix",sAutPrefix)
+XMLEcrit("CDA","/ClinicalDocument/legalAuthenticator/assignedEntity/assignedPerson/name/given",sAutPrenom)
+XMLEcrit("CDA","/ClinicalDocument/legalAuthenticator/assignedEntity/assignedPerson/name/family",sAutNom)
+//StandardIntustryClassCode of the represented organisation
+XMLEcrit("CDA","/ClinicalDocument/documentationOf/serviceEvent/performer/assignedEntity/representedOrganization/standardIndustryClassCode/@code",sICCCode)
+XMLEcrit("CDA","/ClinicalDocument/documentationOf/serviceEvent/performer/assignedEntity/representedOrganization/standardIndustryClassCode/@codeSystemName",sICCCSN)
+XMLEcrit("CDA","/ClinicalDocument/documentationOf/serviceEvent/performer/assignedEntity/representedOrganization/standardIndustryClassCode/@displayName",sICCDisplayName)
+//Other informations
+XMLEcrit("CDA","/ClinicalDocument/componentOf/encompassingEncounter/location/healthCareFacility/code/@code",sHCFCode)
+XMLEcrit("CDA","/ClinicalDocument/componentOf/encompassingEncounter/location/healthCareFacility/code/@codeSystemName",sHCFCSN)
+XMLEcrit("CDA","/ClinicalDocument/componentOf/encompassingEncounter/location/healthCareFacility/code/@displayName",sHCFDisplayName)
+
+//conversion du pdf en base 64
+sPDFB64 = Remplace(Crypte(fChargeBuffer(sPDFB64),"",crypteAucun,encodeBASE64), RC ,"")
+
+
+//PDFBASE64
+XMLEcrit("CDA","/ClinicalDocument/component/nonXMLBody/text",sPDFB64)
+
+// Reconstruction de la chaîne XML
+SourceXML = XMLConstruitChaîne("CDA")
+SourceXML = Remplace(SourceXML,Caract(10) , CRLF)
+SourceXML = Remplace(SourceXML,"/>" , " />")
+
+// Sauvegarde du document XML dans un fichier
+fSauveTexte(gsRepDest + "\" + sNomdocument + ".xml", SourceXML)
+XMLTermine("CDA")

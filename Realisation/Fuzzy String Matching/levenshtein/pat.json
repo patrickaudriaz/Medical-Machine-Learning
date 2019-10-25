@@ -1,0 +1,38 @@
+[
+  {
+    "N° Enr.": 1,
+    "IDPatInt": "TEST11",
+    "PatNom": "MONDEMO",
+    "PatPrenom": "Patient",
+    "PatDDN": "19560122",
+    "PatAdresse": "rte. d'Englisberg 13",
+    "PatNPA": 1763,
+    "PatLieu": "GRANGES-PACCOT",
+    "PatTel": 265500580,
+    "PatSex": "M"
+  },
+  {
+    "N° Enr.": 2,
+    "IDPatInt": "TEST12",
+    "PatNom": "PONSE",
+    "PatPrenom": "Ray",
+    "PatDDN": "19560122",
+    "PatAdresse": "rte. d'Englisberg 14",
+    "PatNPA": 1763,
+    "PatLieu": "GRANGES-PACCOT",
+    "PatTel": 265500581,
+    "PatSex": "M"
+  },
+  {
+    "N° Enr.": 3,
+    "IDPatInt": "TEST13",
+    "PatNom": "GRATTE",
+    "PatPrenom": "Sam",
+    "PatDDN": "19560123",
+    "PatAdresse": "rte. d'Englisberg 15",
+    "PatNPA": 1763,
+    "PatLieu": "GRANGES-PACCOT",
+    "PatTel": 265500582,
+    "PatSex": "M"
+  }
+ ]
